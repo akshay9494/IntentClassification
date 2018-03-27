@@ -1,0 +1,32 @@
+{
+  "dataSource": {
+    "file": {
+      "path": "",
+      "dataColumn": "",
+      "labelColumn": "",
+      "fileType": "csv"
+    },
+    "DB": {
+      "DBName": "jnana",
+      "collectionName": "TrainingUtteranceCollection",
+      "trainingStatusCollection": "TrainingStatus"
+    }
+  },
+  "embeddings": {
+    "embeddingsPath": "",
+    "embeddingsDimension": ""
+  },
+  "modelling": {
+    "maxNumberOfWords": "",
+    "maxLength": "",
+    "validationSplit": "0.2"
+  },
+  "language": {
+    "french": {
+      "stopwordsPath": ""
+    },
+    "english": {
+
+    }
+  }
+}

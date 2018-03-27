@@ -1,0 +1,10 @@
+from .FrenchLanguageConfigurations import FrenchLanguageConfigurations
+from .EnglishLanguageConfigurations import EnglishLanguageConfigurations
+
+class LanguageConfigurations:
+    def __init__(self, language_config):
+        # self.language_properties = language_config
+        if 'french' in language_config.keys():
+            self.french_properties = FrenchLanguageConfigurations(language_config['french'])
+        else:
+            self.english_properties = EnglishLanguageConfigurations(language_config['english'])

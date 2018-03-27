@@ -1,0 +1,2 @@
+from .FrWacEmbeddingLoader import FrWacEmbeddingLoader
+from .GloveEmbeddingLoader import GloveEmbeddingLoader
