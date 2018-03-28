@@ -14,4 +14,5 @@ class Configurations:
         self.embeddings_properties = EmbeddingsConfigurations(config['embeddings'])
         self.language_properties = LanguageConfigurations(config['language'])
         self.data_source_properties = DataSourceConfigurations(config['dataSource'])
+        self.intent_home = config['intentHome']
 

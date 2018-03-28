@@ -1,10 +1,12 @@
 from .LanguagePreprocessor import LanguagePreprocessor
-from utilities.StemmedTfidfVectorizer import StemmedTfidfVectorizer
+from utilities.stemmed_tfidf_vectorizer import StemmedTfidfVectorizer
 import numpy as np
+from utilities.preprocessing import Preprocessing
+import logging
 
 class EnglishLanguagePreprocessor(LanguagePreprocessor):
     def __init__(self, model_properties):
-        super(EnglishLanguagePreprocessor, self).__init__(model_properties)
+        super().__init__(model_properties)
 
     def __prepare_tfidf(self, text):
         tfidf = StemmedTfidfVectorizer(ngram_range=(1, 3),
@@ -17,6 +19,8 @@ class EnglishLanguagePreprocessor(LanguagePreprocessor):
 
     def preprocess_data(self, df):
         texts = df['Text'].tolist()
+        logging.info('Expanding contractions.')
+        texts = [Preprocessing.expand_english_sentences_contractions(s) for s in texts]
         labels = df['Label'].tolist()
 
         # label encode
@@ -26,5 +30,4 @@ class EnglishLanguagePreprocessor(LanguagePreprocessor):
         # prepare tfidf
         tfidf_input = self.__prepare_tfidf(texts)
         # shuffle and split data
-        return super().\
-            train_val_split(nn_input=nn_input, tfidf_input=tfidf_input, labels=labels)
+        return super().train_val_split(nn_input=nn_input, tfidf_input=tfidf_input, labels=labels)

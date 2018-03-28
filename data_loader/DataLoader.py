@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from configuration import Configurations
+import logging
 
 class DataLoader(ABC):
     @abstractmethod
@@ -12,6 +12,7 @@ class DataLoader(ABC):
         :param df: loaded dataframe
         :return: dataframe with duplicates and lesser instances removed.
         """
+        logging.info('Preprocessing Data Frame to drop duplicates and lesser training samples.')
         df.drop_duplicates(inplace=True)
         df.dropna(axis=1, how='all', inplace=True)
         df.dropna(axis=0, how='any', inplace=True)

@@ -1,2 +1,7 @@
 
 *.xml
+*.h5
+*.dk
+*.DS_Store
+*.pyc
+*.ipynb

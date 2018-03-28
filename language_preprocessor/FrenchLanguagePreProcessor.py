@@ -5,7 +5,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 import nltk.stem
 from sklearn.feature_extraction.text import TfidfVectorizer
-from utilities.StemmedTfidfVectorizer import StemmedTfidfVectorizer
+from utilities.stemmed_tfidf_vectorizer import StemmedTfidfVectorizer
 import numpy as np
 
 

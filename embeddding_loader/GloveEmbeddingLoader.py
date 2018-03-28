@@ -13,6 +13,7 @@ class GloveEmbeddingLoader(EmbeddingLoader):
         loads english embeddings (glove)
         :return: embedding dictionary consisiting of words and their vectors
         """
+        logging.info('Beginning Loading of Glove Embeddings.')
         embedding_index = {}
         f = open(self.embedding_properties.embeddings_path, encoding='utf8')
         for line in tqdm(f):
@@ -32,5 +33,5 @@ class GloveEmbeddingLoader(EmbeddingLoader):
         try:
             return embeddings_model.get(word)
         except KeyError:
-            print('Key Error for: {}'.format(word))
+            logging.info('Key Error for: {}'.format(word))
             return None

@@ -6,6 +6,9 @@ import language_preprocessor
 from utilities.model_architectures import ModelArchitectures
 from keras import backend as K
 import logging
+from keras.callbacks import ModelCheckpoint, TensorBoard
+import os
+from datetime import datetime
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -17,6 +20,8 @@ class IntentTrainer():
         self.data_loader_instance = data_loader
         self.language_preprocessor_instance = language_preprocessor
         self.config = configurations
+        self.model_name = 'intent_classifier_{}.h5'.format(datetime.now().strftime('%Y-%m-%d--%H-%M-%S'))
+        self.tensorboard_logs_name = 'intent_classification_{}'.format(datetime.now().strftime('%Y-%m-%d--%H-%M-%S'))
 
 
     def __create_embedding_matrix(self, embeddings):
@@ -50,8 +55,17 @@ class IntentTrainer():
     def __preprocess_data(self, data):
         return self.language_preprocessor_instance.preprocess_data(data)
 
+    def __training_essentials(self):
+        self.tensorboard_dir = os.path.join(self.config.intent_home, 'tensorboard_logs')
+        if not os.path.isdir(self.tensorboard_dir):
+            os.makedirs(self.tensorboard_dir)
+        self.model_dir = os.path.join(self.config.intent_home, 'models')
+        if not os.path.isdir(self.model_dir):
+            os.makedirs(self.model_dir)
+
 
     def train(self):
+        self.__training_essentials()
         logging.info('Loading Data For the model.')
         data = self.__load_data()
 
@@ -72,7 +86,10 @@ class IntentTrainer():
                                                 self.config.model_properties).get_model()
 
         # add callbacks for model checkpointing, tensorboard etc...
-        callbacks = []
+        callbacks = [ModelCheckpoint(filepath=os.path.join(self.model_dir, self.model_name),
+                                     save_best_only=True,
+                                     monitor='val_loss'),
+                     TensorBoard(log_dir=os.path.join(self.tensorboard_dir, self.tensorboard_logs_name))]
 
         if 'tfidf' in self.config.model_properties.model_identifier:
             model = model_architecture(embedding_matrix=embedding_matrix,
@@ -97,7 +114,6 @@ class IntentTrainer():
                       callbacks=callbacks)
 
         logging.info('Training Complete.')
-
 
 
 

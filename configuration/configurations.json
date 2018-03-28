@@ -17,7 +17,7 @@
     "validationSplit": 0.2,
     "randomState": 42,
     "batchSize": 1024,
-    "numIterations": 40,
+    "numIterations": 100,
     "dropout": 0.5,
     "correctSpelling": false,
     "addSynonyms": false,
@@ -29,5 +29,6 @@
     "english": {
 
     }
-  }
+  },
+  "intentHome": "/Users/akshay/Documents/GitHub/IntentClassification/intent_classification_home"
 }
