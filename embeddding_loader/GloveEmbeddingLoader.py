@@ -1,6 +1,7 @@
 from .EmbeddingLoader import EmbeddingLoader
 from tqdm import tqdm
 import numpy as np
+import logging
 
 class GloveEmbeddingLoader(EmbeddingLoader):
     def __init__(self, embeddings_properties):
@@ -13,9 +14,9 @@ class GloveEmbeddingLoader(EmbeddingLoader):
         :return: embedding dictionary consisiting of words and their vectors
         """
         embedding_index = {}
-        f = open(self.embedding_properties.embedding_path, encoding='utf8')
+        f = open(self.embedding_properties.embeddings_path, encoding='utf8')
         for line in tqdm(f):
-            values = line.aplit()
+            values = line.split()
             word = values[0]
             coefs = np.asarray(values[1:], dtype='float32')
             embedding_index[word] = coefs
@@ -29,6 +30,7 @@ class GloveEmbeddingLoader(EmbeddingLoader):
         :return: vector if exists else None
         """
         try:
-            embedding_index.get(word)
+            return embeddings_model.get(word)
         except KeyError:
+            print('Key Error for: {}'.format(word))
             return None

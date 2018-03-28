@@ -1,0 +1,32 @@
+{
+  "dataSource": {
+    "file": {
+      "path": "/Users/akshay/Desktop/Intents.csv",
+      "dataColumn": "Intent",
+      "labelColumn": "Label",
+      "fileType": "csv"
+    },
+    "DB": {
+      "DBName": "jnana",
+      "collectionName": "TrainingUtteranceCollection",
+      "trainingStatusCollection": "TrainingStatus"
+    }
+  },
+  "embeddings": {
+    "embeddingsPath": "/Users/akshay/Downloads/glove.6B/glove.6B.300d.txt",
+    "embeddingsDimension": "300"
+  },
+  "modelling": {
+    "maxNumberOfWords": "",
+    "maxLength": "",
+    "validationSplit": "0.2"
+  },
+  "language": {
+    "french": {
+      "stopwordsPath": ""
+    },
+    "english": {
+
+    }
+  }
+}

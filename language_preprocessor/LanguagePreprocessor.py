@@ -9,7 +9,8 @@ class LanguagePreprocessor(ABC):
     def __init__(self, model_properties):
         self.model_properties = model_properties
 
-    def __encode_labels(self, labels):
+    def encode_labels(self, labels):
+        self.num_classes = len(np.unique(labels))
         label_encoder = preprocessing.LabelEncoder()
         label_encoder.fit(labels)
         # you need to pickle labels to be able to use it while prediction
@@ -18,7 +19,7 @@ class LanguagePreprocessor(ABC):
         return labels
 
 
-    def __tokenize_text(self, text):
+    def tokenize_text(self, text):
         tokenizer = Tokenizer(num_words=self.model_properties.max_num_of_words)
         # see if you need to add tokens from embeddings as well
         tokenizer.fit_on_texts(text)
@@ -28,7 +29,7 @@ class LanguagePreprocessor(ABC):
         return nn_input
 
 
-    def __train_val_split(self, nn_input, tfidf_input, labels):
+    def train_val_split(self, nn_input, tfidf_input, labels):
         indices = np.arange(nn_input.shape[0])
         np.random.shuffle(indices)
         nn_input = nn_input[indices]

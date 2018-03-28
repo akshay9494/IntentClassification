@@ -1,30 +1,31 @@
 {
   "dataSource": {
     "file": {
-      "path": "",
-      "dataColumn": "",
-      "labelColumn": "",
+      "path": "/Users/akshay/Desktop/Intents.csv",
+      "dataColumn": "Intent",
+      "labelColumn": "Label",
       "fileType": "csv"
-    },
-    "DB": {
-      "DBName": "jnana",
-      "collectionName": "TrainingUtteranceCollection",
-      "trainingStatusCollection": "TrainingStatus"
     }
   },
   "embeddings": {
-    "embeddingsPath": "",
-    "embeddingsDimension": ""
+    "embeddingsPath": "/Users/akshay/Downloads/glove.6B/glove.6B.300d.txt",
+    "embeddingsDimension": 300
   },
   "modelling": {
-    "maxNumberOfWords": "",
-    "maxLength": "",
-    "validationSplit": "0.2"
+    "maxNumberOfWords": 500000,
+    "maxLength": 20,
+    "validationSplit": 0.2,
+    "randomState": 42,
+    "batchSize": 1024,
+    "numIterations": 40,
+    "dropout": 0.5,
+    "correctSpelling": false,
+    "addSynonyms": false,
+    "learningRate": 0.001,
+    "modelIdentifier": "lstm_tfidf",
+    "useEmbeddingVocab": true
   },
   "language": {
-    "french": {
-      "stopwordsPath": ""
-    },
     "english": {
 
     }

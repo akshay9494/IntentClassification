@@ -20,5 +20,5 @@ class DataLoader(ABC):
                       left_on='Label',
                       right_index=True)
         df = df[df.label_counts >= 5]
-        df.drop(columns=['label_counts'], inplace=True)
+        df.drop('label_counts', axis=1, inplace=True)
         return df

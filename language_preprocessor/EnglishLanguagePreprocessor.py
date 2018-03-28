@@ -20,11 +20,11 @@ class EnglishLanguagePreprocessor(LanguagePreprocessor):
         labels = df['Label'].tolist()
 
         # label encode
-        labels = self.__encode_labels(labels)
+        labels = super().encode_labels(labels)
         # tokenize text
-        nn_input = self.__tokenize_text(texts)
+        nn_input = super().tokenize_text(texts)
         # prepare tfidf
         tfidf_input = self.__prepare_tfidf(texts)
         # shuffle and split data
-        nn_input_train, tfidf_input_train, labels_train, nn_input_val, tfidf_input_val, labels_val = self.\
-            __train_val_split(nn_input=nn_input, tfidf_input=tfidf_input, labels=labels)
+        return super().\
+            train_val_split(nn_input=nn_input, tfidf_input=tfidf_input, labels=labels)
