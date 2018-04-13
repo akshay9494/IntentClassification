@@ -17,12 +17,12 @@
     "validationSplit": 0.2,
     "randomState": 42,
     "batchSize": 1024,
-    "numIterations": 100,
+    "numIterations": 30,
     "dropout": 0.5,
     "correctSpelling": false,
     "addSynonyms": false,
     "learningRate": 0.001,
-    "modelIdentifier": "lstm_tfidf",
+    "modelIdentifier": "lstm",
     "useEmbeddingVocab": true
   },
   "language": {
@@ -30,5 +30,9 @@
 
     }
   },
-  "intentHome": "/Users/akshay/Documents/GitHub/IntentClassification/intent_classification_home"
+  "intentHome": "/Users/akshay/Documents/GitHub/IntentClassification/intentions_home",
+  "trainingOutputs": {
+    "tokenizerName": "keras_tokenizer.pkl",
+    "labelEncoderName": "label_encoder.pkl"
+  }
 }

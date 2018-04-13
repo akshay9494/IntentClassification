@@ -22,6 +22,8 @@ class GloveEmbeddingLoader(EmbeddingLoader):
             coefs = np.asarray(values[1:], dtype='float32')
             embedding_index[word] = coefs
         f.close()
+        self.vocab = list(embedding_index.keys())
+        logging.debug('Found {} many embedding vectors.'.format(len(self.vocab)))
         return embedding_index
 
     def get_embedding(self, embeddings_model, word):
@@ -35,3 +37,4 @@ class GloveEmbeddingLoader(EmbeddingLoader):
         except KeyError:
             logging.info('Key Error for: {}'.format(word))
             return None
+

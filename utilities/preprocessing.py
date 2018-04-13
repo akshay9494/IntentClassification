@@ -19,4 +19,8 @@ class Preprocessing:
         sentence = re.sub('n\'t', ' not', sentence)
         sentence = re.sub('\'m', ' am', sentence)
         sentence = re.sub('\'re', ' are', sentence)
+        sentence = re.sub('\?', ' ?', sentence)
+        sentence = re.sub('\,', ' ,', sentence)
+        sentence = re.sub('\.', ' .', sentence)
+        sentence = re.sub('\!', ' !', sentence)
         return sentence

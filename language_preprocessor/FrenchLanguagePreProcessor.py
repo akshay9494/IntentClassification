@@ -27,18 +27,21 @@ class FrenchLanguagePreprocessor(LanguagePreprocessor):
         return tfidf_input_data
 
 
-    def preprocess_data(self, df):
+    def preprocess_data(self, df, pickle_path, embeddings_vocab=None):
         texts = df['Text'].tolist()
         labels = df['Label'].tolist()
 
         # label encode
-        labels = self.__encode_labels(labels)
+        labels = self.encode_labels(labels)
         # tokenize text
-        nn_input = self.__tokenize_text(texts)
+        embeddings_words = ''
+        if embeddings_vocab is not None:
+            embeddings_words = ' '.join(embeddings_vocab)
+        nn_input = self.tokenize_text(texts, embeddings_words)
         # prepare tfidf
         tfidf_input = self.__prepare_tfidf(texts)
 
         # shuffle and split data
-        return self.__train_val_split(nn_input=nn_input, tfidf_input=tfidf_input, labels=labels)
+        return self.train_val_split(nn_input=nn_input, tfidf_input=tfidf_input, labels=labels)
 
 
