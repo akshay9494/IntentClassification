@@ -5,6 +5,7 @@ import os
 import numpy as np
 from keras.preprocessing.sequence import pad_sequences
 import nltk
+from utilities.preprocessing import Preprocessing
 
 
 class IntentClassifier:
@@ -34,6 +35,7 @@ class IntentClassifier:
 
     def get_intent(self, sentence):
         sentence = ' '.join(nltk.word_tokenize(sentence))
+        sentence = Preprocessing.expand_english_sentences_contractions(sentence)
         sequences = self.tokenizer.texts_to_sequences([sentence])
         nn_input = pad_sequences(sequences, maxlen=self.config.model_properties.max_length)
         if self.model_trained_with_vectorizer:
@@ -48,6 +50,7 @@ class IntentClassifier:
 
 if __name__ == '__main__':
     intent_classification_instance = IntentClassifier()
-    sentence = input('Enter your sentence: ')
-    intent = intent_classification_instance.get_intent(sentence)
-    print(intent)
+    while True:
+        sentence = input('Enter your sentence: ')
+        intent = intent_classification_instance.get_intent(sentence)
+        print(intent)

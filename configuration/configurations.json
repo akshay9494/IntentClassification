@@ -17,7 +17,7 @@
     "validationSplit": 0.2,
     "randomState": 42,
     "batchSize": 1024,
-    "numIterations": 30,
+    "numIterations": 200,
     "dropout": 0.5,
     "correctSpelling": false,
     "addSynonyms": false,

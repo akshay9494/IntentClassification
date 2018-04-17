@@ -5,3 +5,5 @@
 *.DS_Store
 *.pyc
 *.ipynb
+*.pkl
+.idea/IntentClassification.iml
