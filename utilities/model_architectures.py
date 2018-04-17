@@ -1,7 +1,7 @@
 from keras.models import Model
 from keras import optimizers
 from keras.layers import Embedding, Dropout, LSTM, Concatenate, Dense, \
-    BatchNormalization, GlobalMaxPooling1D, Input, concatenate
+    BatchNormalization, GlobalMaxPooling1D, Input, concatenate, Conv1D
 
 
 class ModelArchitectures:
@@ -62,9 +62,97 @@ class ModelArchitectures:
                       metrics=['acc'])
         return model
 
+    def _model_lstm_conv_tfidf(self, embedding_matrix, word_index, input_shape, num_classes):
+        embedding_layer = Embedding(len(word_index) + 1,
+                                    embedding_matrix.shape[1],
+                                    weights=[embedding_matrix],
+                                    input_length=self.model_properties.max_length,
+                                    trainable=False)
+
+        sequence_input = Input(shape=(self.model_properties.max_length,), dtype='int32')
+        embedded_sequences = embedding_layer(sequence_input)
+
+        x = Dropout(self.model_properties.dropout)(embedded_sequences)
+        x = BatchNormalization()(x)
+        x = LSTM(150)(x)
+        x = Dropout(self.model_properties.dropout)(x)
+
+        z = Dropout(self.model_properties.dropout)(embedded_sequences)
+        z = Conv1D(150, 3, padding='valid', activation='relu')(z)
+        z = BatchNormalization()(z)
+        z = Dropout(self.model_properties.dropout)(z)
+        z = Conv1D(150, 3, padding='valid', activation='relu')(z)
+        z = BatchNormalization()(z)
+        z = Dropout(self.model_properties.dropout)(z)
+        z = Conv1D(150, 3, padding='valid', activation='relu')(z)
+        z = GlobalMaxPooling1D()(z)
+        z = BatchNormalization()(z)
+        z = Dropout(self.model_properties.dropout)(z)
+        z = Dense(300, activation='relu')(z)
+        z = Dropout(self.model_properties.dropout)(z)
+
+        tfidf_input = Input(shape=(input_shape,), dtype='float')
+        y = Dense(embedding_matrix.shape[1], kernel_initializer='glorot_uniform', activation='tanh')(tfidf_input)
+        y = Dropout(self.model_properties.dropout)(y)
+        y = BatchNormalization()(y)
+        y = Dense(embedding_matrix.shape[1], kernel_initializer='glorot_uniform', activation='tanh')(y)
+        y = Dropout(self.model_properties.dropout)(y)
+
+        merge_layer = concatenate([x, y, z])
+        merge_layer = BatchNormalization()(merge_layer)
+        output_layer = Dense(num_classes, activation='softmax')(merge_layer)
+
+        model = Model([sequence_input, tfidf_input], output_layer)
+
+        model.compile(loss='categorical_crossentropy',
+                      optimizer=optimizers.Nadam(lr=self.model_properties.learning_rate),
+                      metrics=['acc'])
+        return model
+
+
+    def _model_lstm_conv(self, embedding_matrix, word_index, num_classes):
+        embedding_layer = Embedding(len(word_index) + 1,
+                                    embedding_matrix.shape[1],
+                                    weights=[embedding_matrix],
+                                    input_length=self.model_properties.max_length,
+                                    trainable=False)
+
+        sequence_input = Input(shape=(self.model_properties.max_length,), dtype='int32')
+        embedded_sequences = embedding_layer(sequence_input)
+
+        x = Dropout(self.model_properties.dropout)(embedded_sequences)
+        x = BatchNormalization()(x)
+        x = LSTM(150)(x)
+        x = Dropout(self.model_properties.dropout)(x)
+
+        z = Dropout(self.model_properties.dropout)(embedded_sequences)
+        z = Conv1D(150, 3, padding='valid', activation='relu')(z)
+        z = BatchNormalization()(z)
+        z = Dropout(self.model_properties.dropout)(z)
+        z = Conv1D(150, 3, padding='valid', activation='relu')(z)
+        z = BatchNormalization()(z)
+        z = Dropout(self.model_properties.dropout)(z)
+        z = Conv1D(150, 3, padding='valid', activation='relu')(z)
+        z = GlobalMaxPooling1D()(z)
+        z = Dropout(self.model_properties.dropout)(z)
+
+        merge_layer = concatenate([x, z])
+        merge_layer = BatchNormalization()(merge_layer)
+        output_layer = Dense(num_classes, activation='softmax')(merge_layer)
+
+        model = Model(sequence_input, output_layer)
+
+        model.compile(loss='categorical_crossentropy',
+                      optimizer=optimizers.Nadam(lr=self.model_properties.learning_rate),
+                      metrics=['acc'])
+        return model
+
+
     def get_model(self):
         model = {
             'lstm': self._model_lstm,
-            'lstm_tfidf': self._model_lstm_tfidf
+            'lstm_tfidf': self._model_lstm_tfidf,
+            'lstm_conv_tfidf': self._model_lstm_conv_tfidf,
+            'lstm_conv': self._model_lstm_conv
         }
         return model[self.model_properties.model_identifier]

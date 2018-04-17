@@ -1,3 +1,6 @@
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
 from configuration import Configurations
 import pickle
 from keras.models import load_model
