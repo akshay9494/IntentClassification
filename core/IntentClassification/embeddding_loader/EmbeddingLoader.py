@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from configuration import EmbeddingsConfigurations
+from core.IntentClassification.configuration import EmbeddingsConfigurations
 
 class EmbeddingLoader(ABC):
     @abstractmethod

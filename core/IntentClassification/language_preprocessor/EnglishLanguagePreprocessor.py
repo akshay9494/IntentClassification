@@ -1,7 +1,7 @@
 from .LanguagePreprocessor import LanguagePreprocessor
-from utilities.stemmed_tfidf_vectorizer import StemmedTfidfVectorizer
+from core.IntentClassification.utilities.stemmed_tfidf_vectorizer import StemmedTfidfVectorizer
 import numpy as np
-from utilities.preprocessing import Preprocessing
+from core.IntentClassification.utilities.preprocessing import Preprocessing
 import logging
 import pickle
 import os

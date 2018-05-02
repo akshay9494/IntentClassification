@@ -1,14 +1,14 @@
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
-from configuration import Configurations
+from core.IntentClassification.configuration import Configurations
 import pickle
 from keras.models import load_model
 import os
 import numpy as np
 from keras.preprocessing.sequence import pad_sequences
 import nltk
-from utilities.preprocessing import Preprocessing
+from core.IntentClassification.utilities.preprocessing import Preprocessing
 
 
 class IntentClassifier:

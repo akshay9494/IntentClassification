@@ -22,7 +22,7 @@
     "correctSpelling": false,
     "addSynonyms": false,
     "learningRate": 0.001,
-    "modelIdentifier": "lstm",
+    "modelIdentifier": "lstm_conv",
     "useEmbeddingVocab": true
   },
   "language": {
@@ -30,7 +30,7 @@
 
     }
   },
-  "intentHome": "/Users/akshay/Documents/GitHub/IntentClassification/intentions_home",
+  "intentHome": "/Users/akshay/Documents/GitHub/Sentence-to-Mathematical-Equation/intentions_home",
   "trainingOutputs": {
     "tokenizerName": "keras_tokenizer.pkl",
     "labelEncoderName": "label_encoder.pkl"

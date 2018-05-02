@@ -1,0 +1,319 @@
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: how much is twenty two raised to thirty
+DEBUG:root:Sentence preprocessed as: twenty two raised to thirty
+DEBUG:root:Equations formatted as: twenty two ** thirty
+DEBUG:root:Mathematical Equation formed as: 22 ** 30
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:04:28] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:05:02] "POST /S2ME/basic_calculations HTTP/1.1" 400 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: wallah!
+DEBUG:root:Sentence preprocessed as: wallah
+DEBUG:root:Equations formatted as: wallah
+ERROR:root:Error happened!!
+ERROR:root:No valid number words found! Please enter a valid number word (eg. two million twenty three thousand and forty nine)
+Traceback (most recent call last):
+  File "/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py", line 55, in sent_to_result
+    sentence = sentence.replace(r, str(w2n.word_to_num(r)))
+  File "/anaconda/lib/python3.6/site-packages/word2number/w2n.py", line 154, in word_to_num
+    raise ValueError("No valid number words found! Please enter a valid number word (eg. two million twenty three thousand and forty nine)")
+ValueError: No valid number words found! Please enter a valid number word (eg. two million twenty three thousand and forty nine)
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:05:11] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: nine hundred and four plus thirty six minus two sixty nine.
+DEBUG:root:Sentence preprocessed as: nine hundred and four plus thirty six minus two sixty nine
+DEBUG:root:Equations formatted as: nine hundred and four + thirty si* - two si*ty nine
+ERROR:root:Error happened!!
+ERROR:root:No valid number words found! Please enter a valid number word (eg. two million twenty three thousand and forty nine)
+Traceback (most recent call last):
+  File "/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py", line 55, in sent_to_result
+    sentence = sentence.replace(r, str(w2n.word_to_num(r)))
+  File "/anaconda/lib/python3.6/site-packages/word2number/w2n.py", line 154, in word_to_num
+    raise ValueError("No valid number words found! Please enter a valid number word (eg. two million twenty three thousand and forty nine)")
+ValueError: No valid number words found! Please enter a valid number word (eg. two million twenty three thousand and forty nine)
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:06:23] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: nine hundred and four plus thirty six minus two sixty nine.
+DEBUG:root:Sentence preprocessed as: nine hundred and four plus thirty six minus two sixty nine
+DEBUG:PIL.Image:Importing BmpImagePlugin
+DEBUG:PIL.Image:Importing BufrStubImagePlugin
+DEBUG:PIL.Image:Importing CurImagePlugin
+DEBUG:PIL.Image:Importing DcxImagePlugin
+DEBUG:PIL.Image:Importing DdsImagePlugin
+DEBUG:PIL.Image:Importing EpsImagePlugin
+DEBUG:PIL.Image:Importing FitsStubImagePlugin
+DEBUG:PIL.Image:Importing FliImagePlugin
+DEBUG:PIL.Image:Importing FpxImagePlugin
+DEBUG:PIL.Image:Importing FtexImagePlugin
+DEBUG:PIL.Image:Importing GbrImagePlugin
+DEBUG:PIL.Image:Importing GifImagePlugin
+DEBUG:PIL.Image:Importing GribStubImagePlugin
+DEBUG:PIL.Image:Importing Hdf5StubImagePlugin
+DEBUG:PIL.Image:Importing IcnsImagePlugin
+DEBUG:PIL.Image:Importing IcoImagePlugin
+DEBUG:PIL.Image:Importing ImImagePlugin
+DEBUG:PIL.Image:Importing ImtImagePlugin
+DEBUG:PIL.Image:Importing IptcImagePlugin
+DEBUG:PIL.Image:Importing JpegImagePlugin
+DEBUG:PIL.Image:Importing Jpeg2KImagePlugin
+DEBUG:PIL.Image:Importing McIdasImagePlugin
+DEBUG:PIL.Image:Importing MicImagePlugin
+DEBUG:PIL.Image:Importing MpegImagePlugin
+DEBUG:PIL.Image:Importing MpoImagePlugin
+DEBUG:PIL.Image:Importing MspImagePlugin
+DEBUG:PIL.Image:Importing PalmImagePlugin
+DEBUG:PIL.Image:Importing PcdImagePlugin
+DEBUG:PIL.Image:Importing PcxImagePlugin
+DEBUG:PIL.Image:Importing PdfImagePlugin
+DEBUG:PIL.Image:Importing PixarImagePlugin
+DEBUG:PIL.Image:Importing PngImagePlugin
+DEBUG:PIL.Image:Importing PpmImagePlugin
+DEBUG:PIL.Image:Importing PsdImagePlugin
+DEBUG:PIL.Image:Importing SgiImagePlugin
+DEBUG:PIL.Image:Importing SpiderImagePlugin
+DEBUG:PIL.Image:Importing SunImagePlugin
+DEBUG:PIL.Image:Importing TgaImagePlugin
+DEBUG:PIL.Image:Importing TiffImagePlugin
+DEBUG:PIL.Image:Importing WebPImagePlugin
+DEBUG:PIL.Image:Image: failed to import WebPImagePlugin: cannot import name '_webp'
+DEBUG:PIL.Image:Importing WmfImagePlugin
+DEBUG:PIL.Image:Importing XbmImagePlugin
+DEBUG:PIL.Image:Importing XpmImagePlugin
+DEBUG:PIL.Image:Importing XVThumbImagePlugin
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: nine hundred and four plus thirty six minus two sixty nine.
+DEBUG:root:Sentence preprocessed as: nine hundred and four plus thirty six minus two sixty nine
+DEBUG:PIL.Image:Importing BmpImagePlugin
+DEBUG:PIL.Image:Importing BufrStubImagePlugin
+DEBUG:PIL.Image:Importing CurImagePlugin
+DEBUG:PIL.Image:Importing DcxImagePlugin
+DEBUG:PIL.Image:Importing DdsImagePlugin
+DEBUG:PIL.Image:Importing EpsImagePlugin
+DEBUG:PIL.Image:Importing FitsStubImagePlugin
+DEBUG:PIL.Image:Importing FliImagePlugin
+DEBUG:PIL.Image:Importing FpxImagePlugin
+DEBUG:PIL.Image:Importing FtexImagePlugin
+DEBUG:PIL.Image:Importing GbrImagePlugin
+DEBUG:PIL.Image:Importing GifImagePlugin
+DEBUG:PIL.Image:Importing GribStubImagePlugin
+DEBUG:PIL.Image:Importing Hdf5StubImagePlugin
+DEBUG:PIL.Image:Importing IcnsImagePlugin
+DEBUG:PIL.Image:Importing IcoImagePlugin
+DEBUG:PIL.Image:Importing ImImagePlugin
+DEBUG:PIL.Image:Importing ImtImagePlugin
+DEBUG:PIL.Image:Importing IptcImagePlugin
+DEBUG:PIL.Image:Importing JpegImagePlugin
+DEBUG:PIL.Image:Importing Jpeg2KImagePlugin
+DEBUG:PIL.Image:Importing McIdasImagePlugin
+DEBUG:PIL.Image:Importing MicImagePlugin
+DEBUG:PIL.Image:Importing MpegImagePlugin
+DEBUG:PIL.Image:Importing MpoImagePlugin
+DEBUG:PIL.Image:Importing MspImagePlugin
+DEBUG:PIL.Image:Importing PalmImagePlugin
+DEBUG:PIL.Image:Importing PcdImagePlugin
+DEBUG:PIL.Image:Importing PcxImagePlugin
+DEBUG:PIL.Image:Importing PdfImagePlugin
+DEBUG:PIL.Image:Importing PixarImagePlugin
+DEBUG:PIL.Image:Importing PngImagePlugin
+DEBUG:PIL.Image:Importing PpmImagePlugin
+DEBUG:PIL.Image:Importing PsdImagePlugin
+DEBUG:PIL.Image:Importing SgiImagePlugin
+DEBUG:PIL.Image:Importing SpiderImagePlugin
+DEBUG:PIL.Image:Importing SunImagePlugin
+DEBUG:PIL.Image:Importing TgaImagePlugin
+DEBUG:PIL.Image:Importing TiffImagePlugin
+DEBUG:PIL.Image:Importing WebPImagePlugin
+DEBUG:PIL.Image:Image: failed to import WebPImagePlugin: cannot import name '_webp'
+DEBUG:PIL.Image:Importing WmfImagePlugin
+DEBUG:PIL.Image:Importing XbmImagePlugin
+DEBUG:PIL.Image:Importing XpmImagePlugin
+DEBUG:PIL.Image:Importing XVThumbImagePlugin
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: nine hundred and four plus thirty six minus two sixty nine.
+DEBUG:root:Sentence preprocessed as: nine hundred and four plus thirty six minus two sixty nine
+DEBUG:PIL.Image:Importing BmpImagePlugin
+DEBUG:PIL.Image:Importing BufrStubImagePlugin
+DEBUG:PIL.Image:Importing CurImagePlugin
+DEBUG:PIL.Image:Importing DcxImagePlugin
+DEBUG:PIL.Image:Importing DdsImagePlugin
+DEBUG:PIL.Image:Importing EpsImagePlugin
+DEBUG:PIL.Image:Importing FitsStubImagePlugin
+DEBUG:PIL.Image:Importing FliImagePlugin
+DEBUG:PIL.Image:Importing FpxImagePlugin
+DEBUG:PIL.Image:Importing FtexImagePlugin
+DEBUG:PIL.Image:Importing GbrImagePlugin
+DEBUG:PIL.Image:Importing GifImagePlugin
+DEBUG:PIL.Image:Importing GribStubImagePlugin
+DEBUG:PIL.Image:Importing Hdf5StubImagePlugin
+DEBUG:PIL.Image:Importing IcnsImagePlugin
+DEBUG:PIL.Image:Importing IcoImagePlugin
+DEBUG:PIL.Image:Importing ImImagePlugin
+DEBUG:PIL.Image:Importing ImtImagePlugin
+DEBUG:PIL.Image:Importing IptcImagePlugin
+DEBUG:PIL.Image:Importing JpegImagePlugin
+DEBUG:PIL.Image:Importing Jpeg2KImagePlugin
+DEBUG:PIL.Image:Importing McIdasImagePlugin
+DEBUG:PIL.Image:Importing MicImagePlugin
+DEBUG:PIL.Image:Importing MpegImagePlugin
+DEBUG:PIL.Image:Importing MpoImagePlugin
+DEBUG:PIL.Image:Importing MspImagePlugin
+DEBUG:PIL.Image:Importing PalmImagePlugin
+DEBUG:PIL.Image:Importing PcdImagePlugin
+DEBUG:PIL.Image:Importing PcxImagePlugin
+DEBUG:PIL.Image:Importing PdfImagePlugin
+DEBUG:PIL.Image:Importing PixarImagePlugin
+DEBUG:PIL.Image:Importing PngImagePlugin
+DEBUG:PIL.Image:Importing PpmImagePlugin
+DEBUG:PIL.Image:Importing PsdImagePlugin
+DEBUG:PIL.Image:Importing SgiImagePlugin
+DEBUG:PIL.Image:Importing SpiderImagePlugin
+DEBUG:PIL.Image:Importing SunImagePlugin
+DEBUG:PIL.Image:Importing TgaImagePlugin
+DEBUG:PIL.Image:Importing TiffImagePlugin
+DEBUG:PIL.Image:Importing WebPImagePlugin
+DEBUG:PIL.Image:Image: failed to import WebPImagePlugin: cannot import name '_webp'
+DEBUG:PIL.Image:Importing WmfImagePlugin
+DEBUG:PIL.Image:Importing XbmImagePlugin
+DEBUG:PIL.Image:Importing XpmImagePlugin
+DEBUG:PIL.Image:Importing XVThumbImagePlugin
+DEBUG:root:Equations formatted as: nine hundred and four plus thirty six minus two sixty nine
+DEBUG:root:Mathematical Equation formed as: 9
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:15:49] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: nine hundred and four plus thirty six minus two sixty nine.
+DEBUG:root:Sentence preprocessed as: nine hundred and four plus thirty six minus two sixty nine
+DEBUG:root:Equations formatted as: nine hundred and four + thirty six - two sixty nine
+DEBUG:root:Mathematical Equation formed as: 904 + 36 - 129
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:16:25] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: nine hundred and four plus thirty six minus two sixty nine.
+DEBUG:root:Sentence preprocessed as: nine hundred and four plus thirty six minus two sixty nine
+DEBUG:root:Equations formatted as: nine hundred and four + thirty six - two sixty nine
+DEBUG:root:Mathematical Equation formed as: 904 + 36 - 129
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:17:30] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is thirty three times eighteen?
+DEBUG:root:Sentence preprocessed as: thirty three times eighteen
+DEBUG:root:Equations formatted as: thirty three * eighteen
+DEBUG:root:Mathematical Equation formed as: 33 * 18
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:18:40] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: Two thousand six hundred and three divided by three.
+DEBUG:root:Sentence preprocessed as: two thousand six hundred and three divided by three
+DEBUG:root:Equations formatted as: two thousand six hundred and three divided / three
+DEBUG:root:Mathematical Equation formed as: 2603 / 3
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:18:55] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: Calculate nine times forty seven.
+DEBUG:root:Sentence preprocessed as: nine times forty seven
+DEBUG:root:Equations formatted as: nine * forty seven
+DEBUG:root:Mathematical Equation formed as: 9 * 47
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:20:38] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is the answer when four is multiplied by sixty-two?
+DEBUG:root:Sentence preprocessed as: when four multiplied by sixty-two
+DEBUG:root:Equations formatted as: when four multiplied / sixty-two
+DEBUG:root:Mathematical Equation formed as: 4 / 60-2
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:20:53] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is the answer when four is multiplied by sixty-two?
+DEBUG:root:Sentence preprocessed as: four multiplied by sixty-two
+DEBUG:root:Equations formatted as: four multiplied / sixty-two
+DEBUG:root:Mathematical Equation formed as: 4 / 60-2
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:21:41] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is the answer when four is multiplied by sixty-two?
+DEBUG:root:Sentence preprocessed as: four multiplied by sixty-two
+DEBUG:root:Equations formatted as: four multiplied / sixty-two
+DEBUG:root:Mathematical Equation formed as: 4 / 60-2
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:21:43] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is the answer when four is multiplied by sixty-two?
+DEBUG:root:Sentence preprocessed as: four multiplied by sixty-two
+DEBUG:root:Equations formatted as: four multiplied / sixty-two
+DEBUG:root:Mathematical Equation formed as: 4 / 60-2
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:21:44] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is the answer when four is multiplied by sixty-two?
+DEBUG:root:Sentence preprocessed as: four * sixty-two
+DEBUG:root:Equations formatted as: four * sixty-two
+DEBUG:root:Mathematical Equation formed as: 4 * 60-2
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:28:56] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/akshay/PycharmProjects/Sentence to Mathematical Equation/core/s2me.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is the answer when four is multiplied by sixty two?
+DEBUG:root:Sentence preprocessed as: four * sixty two
+DEBUG:root:Equations formatted as: four * sixty two
+DEBUG:root:Mathematical Equation formed as: 4 * 62
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:29:43] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: Calculate forty two times eighteen thousand.
+DEBUG:root:Sentence preprocessed as: forty two times eighteen thousand
+DEBUG:root:Equations formatted as: forty two * eighteen thousand
+DEBUG:root:Mathematical Equation formed as: 42 * 18000
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:29:55] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:root:Received post message.
+DEBUG:root:Sentence Extracted as: What is six hundred and eleven divided by thirteen?
+DEBUG:root:Sentence preprocessed as: six hundred and eleven / thirteen
+DEBUG:root:Equations formatted as: six hundred and eleven / thirteen
+DEBUG:root:Mathematical Equation formed as: 611 / 13
+INFO:werkzeug:127.0.0.1 - - [03/Apr/2018 08:30:53] "POST /S2ME/basic_calculations HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 549-019-346

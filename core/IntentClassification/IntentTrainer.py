@@ -1,22 +1,25 @@
 import numpy as np
-from configuration import Configurations
-import embeddding_loader
-import data_loader
-import language_preprocessor
-from utilities.model_architectures import ModelArchitectures
+from .configuration import Configurations
+from core.IntentClassification import embeddding_loader
+from core.IntentClassification import data_loader
+from core.IntentClassification import language_preprocessor
+from .utilities.model_architectures import ModelArchitectures
 from keras import backend as K
 import logging
 from keras.callbacks import ModelCheckpoint, TensorBoard
 import os
 from datetime import datetime
+from log4mongo.handlers import MongoHandler
 
-LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) '
-              '-35s %(lineno) -5d: %(message)s')
 
-logging.basicConfig(level=logging.DEBUG,
-                    format=LOG_FORMAT)#, filename='/Users/akshay/Documents/GitHub/IntentClassification/intentions_home/logs.log')
+# LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) '
+#               '-35s %(lineno) -5d: %(message)s')
+# logging.basicConfig(level=logging.DEBUG)
+#                     format=LOG_FORMAT)#, filename='/Users/akshay/Documents/GitHub/IntentClassification/intentions_home/logs.log')
 logger = logging.getLogger(__name__)
-
+logger.setLevel(logging.DEBUG)
+logger.addHandler(MongoHandler(host='localhost', collection='new_collection'))
+logger.info('in intent_trainer')
 
 class IntentTrainer():
     def __init__(self, embedding_loader, data_loader, language_preprocessor, configurations):
@@ -31,9 +34,9 @@ class IntentTrainer():
 
     def __create_embedding_matrix(self, embeddings):
         num_words = min(len(self.language_preprocessor_instance.word_index)+1, self.config.model_properties.max_num_of_words)
-        logging.debug('Number of words for embeddings: {}'.format(num_words))
+        logger.debug('Number of words for embeddings: {}'.format(num_words))
         embedding_matrix = np.zeros((num_words, self.config.embeddings_properties.embeddings_dim))
-        logging.debug('Shape of Embedding Matrix: {}'.format(embedding_matrix.shape))
+        logger.debug('Shape of Embedding Matrix: {}'.format(embedding_matrix.shape))
         words_with_no_embeddings = []
         for word, i in self.language_preprocessor_instance.word_index.items():
             if i >= self.config.model_properties.max_num_of_words:
@@ -43,7 +46,7 @@ class IntentTrainer():
             if embedding_vector is not None:
                 embedding_matrix[i] = embedding_vector
             else:
-                logging.debug('No Embedding Found for: {}'.format(word))
+                logger.debug('No Embedding Found for: {}'.format(word))
                 words_with_no_embeddings.append(word)
         return embedding_matrix
 
@@ -59,7 +62,7 @@ class IntentTrainer():
 
     def __preprocess_data(self, data):
         if self.config.model_properties.use_embedding_vocab:
-            logging.info('Calling Preprocessor instance with vocab to tokenize')
+            logger.info('Calling Preprocessor instance with vocab to tokenize')
             return self.language_preprocessor_instance.preprocess_data(data,
                                                                        pickle_path=
                                                                        os.path.join(
@@ -68,7 +71,7 @@ class IntentTrainer():
                                                                        embeddings_vocab=
                                                                        self.embedding_loader_instance.vocab)
         else:
-            logging.info('Calling Preprocessor instance without vocab.')
+            logger.info('Calling Preprocessor instance without vocab.')
             return self.language_preprocessor_instance.preprocess_data(data,
                                                                        pickle_path=os.path.join(
                                                                            self.config.intent_home,
@@ -85,20 +88,20 @@ class IntentTrainer():
     def train(self):
         self.__training_essentials()
 
-        logging.info('Loading Embeddings.')
+        logger.info('Loading Embeddings.')
         embeddings = self.__load_embeddings()
 
-        logging.info('Loading Data For the model.')
+        logger.info('Loading Data For the model.')
         data = self.__load_data()
 
-        logging.info('Preprocessing Data For the model.')
+        logger.info('Preprocessing Data For the model.')
         nn_input_train, tfidf_input_train, labels_train, nn_input_val, tfidf_input_val, labels_val = self. \
             __preprocess_data(data)
 
-        logging.info('Creating Embeddings Matrix.')
+        logger.info('Creating Embeddings Matrix.')
         embedding_matrix = self.__create_embedding_matrix(embeddings)
 
-        logging.info('Loading Model Architecture.')
+        logger.info('Loading Model Architecture.')
         # now model can be trained
         K.clear_session()
         model_architecture = ModelArchitectures(model_properties=
@@ -132,14 +135,13 @@ class IntentTrainer():
                       batch_size=self.config.model_properties.batch_size,
                       callbacks=callbacks)
 
-        logging.info('Training Complete.')
+        logger.info('Training Complete.')
 
 
 
-if __name__ == '__main__':
-    logging.info('Loading Configurations')
+def train():
     config = Configurations()
-    logging.info('Language properties being set for {}'.format(config.language_properties.language))
+    logger.info('Language properties being set for {}'.format(config.language_properties.language))
     if config.language_properties.language == 'french':
         embeddding_loader_instance = embeddding_loader.FrWacEmbeddingLoader(embeddings_properties=
                                                                             config.embeddings_properties)
@@ -151,7 +153,7 @@ if __name__ == '__main__':
         language_preprocessor_instance = language_preprocessor.EnglishLanguagePreprocessor(model_properties=
                                                                                            config.model_properties)
 
-    logging.info('Data Source properties being set for {}'.format(config.data_source_properties.data_source))
+    logger.info('Data Source properties being set for {}'.format(config.data_source_properties.data_source))
     if config.data_source_properties.data_source == 'db':
         data_loader_instance = data_loader.DBDataLoader(db_properties=
                                                         config.data_source_properties.db_configurations)
@@ -159,10 +161,16 @@ if __name__ == '__main__':
         data_loader_instance = data_loader.FileDataLoader(file_properties=
                                                           config.data_source_properties.file_properties)
 
-    logging.info('Creating Instance for Intent Trainer.')
+    logger.info('Creating Instance for Intent Trainer.')
     intent_trainer = IntentTrainer(embedding_loader=embeddding_loader_instance,
                                    data_loader=data_loader_instance,
                                    language_preprocessor=language_preprocessor_instance,
                                    configurations=config)
-    logging.info('Beginning Training.')
+    logger.info('Beginning Training.')
     intent_trainer.train()
+
+
+
+if __name__ == '__main__':
+    logger.info('Loading Configurations')
+    train()

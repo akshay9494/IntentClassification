@@ -1,7 +1,11 @@
 from .EmbeddingLoader import EmbeddingLoader
 from tqdm import tqdm
 import numpy as np
-import logging
+import logging as logger
+from log4mongo.handlers import MongoHandler
+#
+
+# logger = logging.getLogger(__name__)
 
 class GloveEmbeddingLoader(EmbeddingLoader):
     def __init__(self, embeddings_properties):
@@ -13,7 +17,7 @@ class GloveEmbeddingLoader(EmbeddingLoader):
         loads english embeddings (glove)
         :return: embedding dictionary consisiting of words and their vectors
         """
-        logging.info('Beginning Loading of Glove Embeddings.')
+        logger.info('Beginning Loading of Glove Embeddings.')
         embedding_index = {}
         f = open(self.embedding_properties.embeddings_path, encoding='utf8')
         for line in tqdm(f):
@@ -23,7 +27,7 @@ class GloveEmbeddingLoader(EmbeddingLoader):
             embedding_index[word] = coefs
         f.close()
         self.vocab = list(embedding_index.keys())
-        logging.debug('Found {} many embedding vectors.'.format(len(self.vocab)))
+        logger.debug('Found {} many embedding vectors.'.format(len(self.vocab)))
         return embedding_index
 
     def get_embedding(self, embeddings_model, word):
@@ -35,6 +39,6 @@ class GloveEmbeddingLoader(EmbeddingLoader):
         try:
             return embeddings_model.get(word)
         except KeyError:
-            logging.info('Key Error for: {}'.format(word))
+            logger.error('Key Error for: {}'.format(word))
             return None
 
