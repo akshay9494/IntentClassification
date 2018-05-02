@@ -1,1 +1,1 @@
-# Sentence to Mathematical Equation
+# Intent Classification Flask app
