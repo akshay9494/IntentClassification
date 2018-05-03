@@ -1,14 +1,14 @@
 {
   "dataSource": {
     "file": {
-      "path": "/Users/akshay/Desktop/Intents.csv",
+      "path": "D:\\Intents.csv",
       "dataColumn": "Intent",
       "labelColumn": "Label",
       "fileType": "csv"
     }
   },
   "embeddings": {
-    "embeddingsPath": "/Users/akshay/Downloads/glove.6B/glove.6B.300d.txt",
+    "embeddingsPath": "D:\\glove.6B\\glove.6B.300d.txt",
     "embeddingsDimension": 300
   },
   "modelling": {
@@ -22,7 +22,7 @@
     "correctSpelling": false,
     "addSynonyms": false,
     "learningRate": 0.001,
-    "modelIdentifier": "lstm_conv",
+    "modelIdentifier": "lstm",
     "useEmbeddingVocab": true
   },
   "language": {
@@ -30,9 +30,21 @@
 
     }
   },
-  "intentHome": "/Users/akshay/Documents/GitHub/Sentence-to-Mathematical-Equation/intentions_home",
+  "intentHome": "D:\\Akshay's Git\\IntentClassification\\intentions_home",
   "trainingOutputs": {
     "tokenizerName": "keras_tokenizer.pkl",
-    "labelEncoderName": "label_encoder.pkl"
+    "labelEncoderName": "label_encoder.pkl",
+    "vectorizerName": "vectorizer.pkl",
+    "modelName": "intent_classification.h5"
+  },
+  "hosting": {
+    "host": "0.0.0.0",
+    "port": 9494
+  },
+  "dbLogging": {
+    "host": "localhost",
+    "port": 27017,
+    "dbName": "logs",
+    "colName": "logs"
   }
 }

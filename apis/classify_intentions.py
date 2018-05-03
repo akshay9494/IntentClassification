@@ -1,13 +1,21 @@
 from flask_restplus import Namespace, Resource, fields
-import os
 import logging
 from core.IntentClassification.IntentClassifier import IntentClassifier
-from core.IntentClassification.IntentTrainer import train
-from flask import abort
+import tensorflow as tf
+from log4mongo.handlers import MongoHandler
+from core.IntentClassification.configuration.Configurations import Configurations
 
+config = Configurations()
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(MongoHandler(host=config.log_properties.host, collection=config.log_properties.col_name))
+
+graph = None
 intent_classification_instance = None
 
-api = Namespace('Intentions', description='Intent Classification APIs.')
+api = Namespace('Classify Intentions', description='Intent Classification APIs.')
+
 
 classification_payload = api.model('classify', {
     'sentence': fields.String(required=True, description='sentence to get classification for from the model.')
@@ -16,19 +24,6 @@ classification_payload = api.model('classify', {
 classification_response = api.model('Classification Response', {
     'intent': fields.String(description='Intent of the sentence')
 })
-
-@api.route('/train')
-class Train(Resource):
-    """Train the model for intent classification."""
-    # @api.doc('basic mathematical computations')
-    # @api.expect(s2me_payload)
-    # @api.marshal_with(s2me_response, code=200)
-    def get(self):
-        """Train the model for intent classification."""
-        logging.info('Received request')
-        train()
-        return 'Training complete.', 200
-
 
 @api.route('/initialize')
 class Initialize(Resource):
@@ -39,8 +34,10 @@ class Initialize(Resource):
     def get(self):
         """Initialize model for intent classification"""
         global intent_classification_instance
-        logging.info('Received request')
+        global graph
+        logger.info('Received request')
         intent_classification_instance = IntentClassifier()
+        graph = tf.get_default_graph()
         return 'Success', 200
 
 
@@ -67,10 +64,12 @@ class Classify(Resource):
     @api.marshal_with(classification_response, code=200)
     def post(self):
         """Intent Classification of sentences."""
-        logging.info('Received request')
+        logger.info('Received request')
         sentence = self.api.payload['sentence']
         global intent_classification_instance
+        global graph
         if intent_classification_instance is None:
             return 'Model uninitialized. Please initialize.'
-        intent = intent_classification_instance.get_intent(sentence)
+        with graph.as_default():
+            intent = intent_classification_instance.get_intent(sentence)
         return {'intent': intent}, 200

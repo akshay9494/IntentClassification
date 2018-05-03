@@ -6,20 +6,18 @@ from core.IntentClassification import language_preprocessor
 from .utilities.model_architectures import ModelArchitectures
 from keras import backend as K
 import logging
-from keras.callbacks import ModelCheckpoint, TensorBoard
+from keras.callbacks import ModelCheckpoint, TensorBoard, EarlyStopping
 import os
 from datetime import datetime
 from log4mongo.handlers import MongoHandler
+from core.IntentClassification.configuration.Configurations import Configurations
+from core.IntentClassification.utilities.custom_callbacks import LogEpochStats
 
+config = Configurations()
 
-# LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) '
-#               '-35s %(lineno) -5d: %(message)s')
-# logging.basicConfig(level=logging.DEBUG)
-#                     format=LOG_FORMAT)#, filename='/Users/akshay/Documents/GitHub/IntentClassification/intentions_home/logs.log')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-logger.addHandler(MongoHandler(host='localhost', collection='new_collection'))
-logger.info('in intent_trainer')
+logger.addHandler(MongoHandler(host=config.log_properties.host, collection=config.log_properties.col_name))
 
 class IntentTrainer():
     def __init__(self, embedding_loader, data_loader, language_preprocessor, configurations):
@@ -108,10 +106,14 @@ class IntentTrainer():
                                                 self.config.model_properties).get_model()
 
         # add callbacks for model checkpointing, tensorboard etc...
-        callbacks = [ModelCheckpoint(filepath=os.path.join(self.train_dir, self.model_name),
+        callbacks = [
+            ModelCheckpoint(filepath=os.path.join(self.train_dir, self.model_name),
                                      save_best_only=True,
                                      monitor='val_loss'),
-                     TensorBoard(log_dir=os.path.join(self.train_dir, self.tensorboard_logs_name))]
+            TensorBoard(log_dir=os.path.join(self.train_dir, self.tensorboard_logs_name)),
+            EarlyStopping(verbose=1),
+            LogEpochStats()
+        ]
 
         if 'tfidf' in self.config.model_properties.model_identifier:
             model = model_architecture(embedding_matrix=embedding_matrix,

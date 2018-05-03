@@ -5,6 +5,8 @@ from .ModelConfigurations import ModelConfigurations
 from .EmbeddingsConfigurations import EmbeddingsConfigurations
 from .LanguageConfigurations import LanguageConfigurations
 from .TrainingOutputsConfigurations import TraininOutputsConfigurations
+from .DBLogConfigurations import DBLogConfigurations
+
 
 config_file = os.path.join(os.path.dirname(__file__), 'configurations.json')
 
@@ -17,5 +19,5 @@ class Configurations:
         self.data_source_properties = DataSourceConfigurations(config['dataSource'])
         self.intent_home = config['intentHome']
         self.training_output_properties = TraininOutputsConfigurations(config['trainingOutputs'])
-
+        self.log_properties = DBLogConfigurations(config['dbLogging'])
 

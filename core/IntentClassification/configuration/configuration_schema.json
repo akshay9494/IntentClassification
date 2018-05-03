@@ -1,0 +1,59 @@
+{
+  "dataSource": "file|db",
+  "file": {
+    "path": "string",
+    "dataColumn": "string",
+    "labelColumn": "string",
+    "fileType": "csv|xlsx|tsv"
+  },
+  "db": {
+    "host": "string",
+    "port": "int",
+    "dbName": "string",
+    "colName": "string",
+    "dataKey": "string",
+    "labelKey": "string"
+  },
+  "embeddings": {
+    "embeddingspath": "string",
+    "embeddingsDimension": "int"
+  },
+  "modelling": {
+    "maxNumberOfWords": "int",
+    "maxLength": "int",
+    "validationSplit": "float",
+    "randomState": "int",
+    "batchSize": "int",
+    "numIterations": "int",
+    "dropout": "float",
+    "correctSpelling": "boolean",
+    "addSynonyms": "boolean",
+    "learningRate": "float",
+    "modelIdentifier": "lstm|lstm_tfidf|lstm_conv_tfidf|lstm_conv",
+    "useEmbeddingVocab": "bool"
+  },
+  "language": "english|french",
+  "english": {
+
+  },
+  "french": {
+
+  },
+  "intentHome": "string",
+  "trainingOutputs": {
+    "tokenizerName": "string",
+    "labelEncoderName": "string",
+    "vectorizerName": "string",
+    "modelName": "string"
+  },
+  "hosting": {
+    "host": "string",
+    "port": "int"
+  },
+  "dbLogging": {
+    "host": "string",
+    "port": "int",
+    "dbName": "string",
+    "colName": "string"
+  }
+}
