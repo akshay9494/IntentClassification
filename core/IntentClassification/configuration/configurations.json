@@ -1,15 +1,15 @@
 {
   "dataSource": {
     "file": {
-      "path": "D:\\Intents.csv",
+      "path": "/Users/akshay/Desktop/Intents.csv",
       "dataColumn": "Intent",
       "labelColumn": "Label",
       "fileType": "csv"
     }
   },
   "embeddings": {
-    "embeddingsPath": "D:\\glove.6B\\glove.6B.300d.txt",
-    "embeddingsDimension": 300
+    "embeddingsPath": "/Users/akshay/Downloads/frWac_non_lem_no_postag_no_phrase_200_cbow_cut0.bin",
+    "embeddingsDimension": 200
   },
   "modelling": {
     "maxNumberOfWords": 500000,

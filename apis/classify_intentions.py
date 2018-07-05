@@ -73,3 +73,7 @@ class Classify(Resource):
         with graph.as_default():
             intent = intent_classification_instance.get_intent(sentence)
         return {'intent': intent}, 200
+
+
+
+        
